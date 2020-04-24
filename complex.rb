@@ -39,10 +39,11 @@ class ComplexNum
 
     def self.multiply_bulk(c_arr)
         @@multiply_bulk_count+=1
-
-        multi=ComplexNum.new(1,1)
         if c_arr.length >0 then
-            c_arr.each { |num| multi*=num}
+            multi= c_arr.first #multi = arr[0]
+            c_arr.drop(1).each {|num| #drop the first item from the array as it is in the multi variable
+                multi*=num
+            }
         end
         return multi
     end
