@@ -28,11 +28,11 @@ class ComplexNum
     def self.add_bulk(c_arr)
         @@add_bulk_count+=1
    
-        sum=ComplexNum.new(0,0)
         if c_arr.length >0 then
-            c_arr.each do |num|
+            sum= c_arr.first #multi = arr[0]
+            c_arr.drop(1).each {|num| #drop the first item from the array as it is in the multi variable
                 sum+=num
-            end
+            }
         end
         return sum
     end
@@ -52,9 +52,10 @@ class ComplexNum
         puts " Add function is used #{@@add_count} times.\n Multiply function is used #{@@multi_count} times.\n Add Bulk function is used #{@@add_bulk_count} times.\n Multiply Bulk function is used #{@@multiply_bulk_count} times."
     end
     
-    
-
 end
+
+
+
 num1=ComplexNum.new(3,2)
 num2=ComplexNum.new(1,7)
 puts "------------add -------------"
