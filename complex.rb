@@ -1,9 +1,6 @@
 class ComplexNum
     attr_reader :real, :imaginary
-    @@add_count=0
-    @@multi_count=0
-    @@add_bulk_count=0
-    @@multiply_bulk_count=0
+    @@counter={:add_count => 0, :multi_count => 0, :add_bulk_count=> 0, :multiply_bulk_count => 0}
     
     def initialize(real, imaginary)
         @real=real
@@ -12,13 +9,14 @@ class ComplexNum
     end
 
     def +(cn)
-        @@add_count+=1
+
+        @@counter[:add_count]+=1
         ComplexNum.new(self.real + cn.real, self.imaginary + cn.imaginary)
        
     end
 
     def *(cn)
-        @@multi_count+=1
+        @@counter[:multi_count]+=1
         ComplexNum.new(
             self.real * cn.real - self.imaginary * cn.imaginary,
             self.real * cn.imaginary + self.imaginary * cn.real
@@ -26,8 +24,7 @@ class ComplexNum
     end
 
     def self.add_bulk(c_arr)
-        @@add_bulk_count+=1
-   
+        @@counter[:add_bulk_count]+=1
         if c_arr.length >0 then
             sum= c_arr.first #multi = arr[0]
             c_arr.drop(1).each {|num| #drop the first item from the array as it is in the multi variable
@@ -38,7 +35,7 @@ class ComplexNum
     end
 
     def self.multiply_bulk(c_arr)
-        @@multiply_bulk_count+=1
+        @@counter[:multiply_bulk_count]+=1
         if c_arr.length >0 then
             multi= c_arr.first #multi = arr[0]
             c_arr.drop(1).each {|num| #drop the first item from the array as it is in the multi variable
@@ -49,7 +46,7 @@ class ComplexNum
     end
 
     def self.get_stats()
-        puts " Add function is used #{@@add_count} times.\n Multiply function is used #{@@multi_count} times.\n Add Bulk function is used #{@@add_bulk_count} times.\n Multiply Bulk function is used #{@@multiply_bulk_count} times."
+        puts " Add function is used #{@@counter[:add_count]} times.\n Multiply function is used #{@@counter[:multi_count]} times.\n Add Bulk function is used #{@@counter[:add_bulk_count]} times.\n Multiply Bulk function is used #{@@counter[:multiply_bulk_count]} times."
     end
     
 end
