@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   before_action :authenticate_user, :only => [:home, :profile, :setting]
   before_action :save_login_state, :only => [:login, :login_attempt]
   def login
+    render "login"
   end
 
   def login_attempt
@@ -28,14 +29,14 @@ class SessionsController < ApplicationController
   #   end
   # end
 
-  def home
-  end
+  # def home
+  # end
 
-  def profile
-  end
+  # def profile
+  # end
 
-  def setting
-  end
+  # def setting
+  # end
 
   def destroy
     session[:user_id] = nil
