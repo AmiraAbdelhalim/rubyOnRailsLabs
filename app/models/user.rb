@@ -19,14 +19,30 @@ class User < ApplicationRecord
 	after_save :clear_password
 	def encrypt_password
 	    if password.present?
-	        self.salt = BCrypt::Engine.generate_salt
-	        self.encrypted_password= BCrypt::Engine.hash_secret(password, salt)
+	        # self.salt = BCrypt::Engine.generate_salt
+            # self.encrypted_password= BCrypt::Engine.hash_secret(password, salt)
+            self.encrypted_password = BCrypt::Password.create(password) if password.present?
         end
     end
     def clear_password
         self.password = nil
     end
 
-    # attr_accessor :username, :email, :password, :password_confirmation
-
+    def self.authenticate(username_or_email="", login_password="")
+        if  EMAIL_REGEX.match(username_or_email)    
+          user = User.find_by_email(username_or_email)
+        else
+          user = User.find_by_username(username_or_email)
+        end
+        if user && user.match_password(login_password)
+          return user
+        else
+          return false
+        end
+    end   
+    
+    def match_password(login_password="")
+        # encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
+        BCrypt::Password.new(encrypted_password) == login_password
+    end
 end
