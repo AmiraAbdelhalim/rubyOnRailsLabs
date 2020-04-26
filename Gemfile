@@ -59,3 +59,6 @@ gem 'bcrypt-ruby', '3.1.5', :require => 'bcrypt'
 
 #devise
 gem 'devise'
+
+#cancancan
+gem 'cancancan', '~> 3.1'
