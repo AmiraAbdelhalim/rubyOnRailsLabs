@@ -56,3 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #authentication
 gem 'bcrypt-ruby', '3.1.5', :require => 'bcrypt'
+
+#devise
+gem 'devise'

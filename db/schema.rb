@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_174305) do
+ActiveRecord::Schema.define(version: 2020_04_26_122259) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
@@ -30,11 +30,15 @@ ActiveRecord::Schema.define(version: 2020_04_25_174305) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "username"
-    t.string "email"
-    t.string "encrypted_password"
-    t.string "salt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true, length: 191
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, length: 191
   end
 
   add_foreign_key "comments", "articles"
