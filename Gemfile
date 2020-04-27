@@ -39,3 +39,12 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+#bcrypt
+gem 'bcrypt', '~> 3.1.7'
+
+#jwt
+gem 'jwt'
+
+#simple command gem is an easy way to create services
+gem 'simple_command'
