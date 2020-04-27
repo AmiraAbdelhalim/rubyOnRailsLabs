@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1
   def show
+    @item = Item.find(params[:id])
     render json: @item
   end
 
@@ -46,6 +47,6 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:name, :description)
+      params.permit(:name, :description)
     end
 end

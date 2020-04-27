@@ -48,3 +48,7 @@ gem 'jwt'
 
 #simple command gem is an easy way to create services
 gem 'simple_command'
+
+
+#serializer
+gem 'active_model_serializers', '~> 0.10.0'
